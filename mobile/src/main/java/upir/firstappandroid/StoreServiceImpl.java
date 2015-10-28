@@ -1,9 +1,11 @@
 package upir.firstappandroid;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +25,9 @@ public class StoreServiceImpl implements StoreService {
 
     //dbHelper = new DbHelper();
     @Override
-    public List<Store> getAllStore() {
+    public List<Product> getAllStore() {
         Cursor c = db.query("store", null, null, null, null, null, null);
-        List<Store> stores = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         // ставим позицию курсора на первую строку выборки
         // если в выборке нет строк, вернется false
         if (c.moveToFirst()) {
@@ -37,7 +39,7 @@ public class StoreServiceImpl implements StoreService {
             do {
 
                 // получаем значения по номерам столбцов и пишем все в лог
-                stores.add(new Store(c.getString(nameColIndex),c.getDouble(priceColIndex),c.getInt(idColIndex)));
+                products.add(new Product(c.getString(nameColIndex), c.getDouble(priceColIndex), c.getInt(idColIndex)));
                 /*Log.d(LOG_TAG,
                         "ID = " + c.getInt(idColIndex) +
                                 ", name = " + c.getString(nameColIndex) +
@@ -50,26 +52,53 @@ public class StoreServiceImpl implements StoreService {
         } else
             Log.d(LOG_TAG, "0 rows");
         c.close();
-        return stores;
+        return products;
     }
 
     @Override
-    public Store getStoreById(int id) {
+    public Product getStoreById(long id) {
         return null;
     }
 
     @Override
-    public Store getStoreByName(String name) {
+    public Product getStoreByName(String name) {
         return null;
     }
 
     @Override
-    public int save() {
-        return 0;
+    public long save(Product product) {
+
+        // создаем объект для данных
+        ContentValues cv = new ContentValues();
+        Log.d(LOG_TAG, "--- Insert in mytable: ---");
+        // подготовим данные для вставки в виде пар: наименование столбца - значение
+
+        cv.put("name", product.getName());
+        cv.put("price", BigDecimal.valueOf(product.getPrice()).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
+        // вставляем запись и получаем ее ID
+        long rowID = db.insert("store", null, cv);
+        Log.d(LOG_TAG, "row inserted, ID = " + rowID);
+        return rowID;
     }
 
     @Override
-    public void delete(int id) {
+    public int update(Product product) {
+        ContentValues cv = new ContentValues();
+        Log.d(LOG_TAG, "--- Update mytabe: ---");
+        // подготовим значения для обновления
+        cv.put("name", product.getName());
+        cv.put("price", BigDecimal.valueOf(product.getPrice()).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
+        // обновляем по id
+        int updCount = db.update("store", cv, "id="+product.getId(),null);
+        Log.d(LOG_TAG, "updated rows count = " + updCount);
+        return updCount;
+    }
+
+    @Override
+    public int delete(long id) {
+        int delCount = db.delete("store", "id = " + id, null);
+        Log.d(LOG_TAG, "row deleted, ID = " + id);
+        return delCount;
 
     }
 }

@@ -5,26 +5,44 @@ import java.io.Serializable;
 /**
  * Created by vital on 27/10/2015.
  */
-public class Store implements Serializable {
+public class Product implements Serializable {
     private String name;
     private Double price;
-    private int id;
+    private long id;
+    private boolean check;
 
 
-    public Store(String name, Double price, int id) {
+    public Product(String name, Double price) {
+        this.name = name;
+        this.price = price;
+        check = false;
+    }
+
+    public Product(String name, Double price, long id) {
         this.name = name;
         this.price = price;
         this.id = id;
+        this.check = false;
     }
 
-    public Store() {
+    public Product() {
+        check = false;
     }
 
-    public int getId() {
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

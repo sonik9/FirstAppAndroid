@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="upir.firstappandroid.SettingsActivity1">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:baselineAligned="false"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/label_show_id"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Show id"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:layout_marginRight="50dp" />
+
+            <CheckBox
+                android:id="@+id/cbBoxSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="30sp"
+                android:singleLine="false"
+                android:textColor="#ee1a1a"
+                android:layout_gravity="center"
+                android:height="123dp"
+                android:gravity="top|end|right">
+            </CheckBox>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/label_set_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Set color "
+                android:textSize="30sp"/>
+
+            <ExpandableListView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/expListColor" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

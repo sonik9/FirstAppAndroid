@@ -7,12 +7,13 @@ import java.util.List;
  */
 public interface StoreService {
 
-    public List<Store> getAllStore();
-    public Store getStoreById(int id);
-    public Store getStoreByName(String name);
+    public List<Product> getAllStore();
+    public Product getStoreById(long id);
+    public Product getStoreByName(String name);
 
-    public int save();
+    public long save(Product product);
+    public int update(Product product);
 
-    public void delete(int id);
+    public int delete(long id);
 
 }

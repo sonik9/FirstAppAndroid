@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="colors">
+        <item name="itemPrimary">#3F51B5</item>
+        <item name="itemPrimaryDark">#303F9F</item>
+        <item name="itemAccent1">#ff4640</item>
+        <item name="itemAccent2">#4046ff</item>
+        <item name="itemAccent3">#ef0454</item>
+        <item name="itemAccent4">#40ff4a</item>
+        <item name="itemAccent5">#ff40f9</item>
+        <item name="itemAccent6">#ffe240</item>
+        <item name="itemAccent7">#fbfff940</item>
+        <item name="itemAccent8">#0d0d0d</item>
+    </string-array>
+</resources>
